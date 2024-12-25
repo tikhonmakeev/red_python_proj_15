@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Прогноз погоды</title>
+    <script>
+        const weatherData = JSON.parse('{{ weather_data | tojson | safe }}');
+        console.log("Weather Data for Dash:", weatherData);
+    </script>    
+</head>
+<body>
+    <h1>Прогноз погоды на маршруте</h1>
+    <h2>Начальный пункт: {{ start_city }}</h2>
+    <p>Погода на нем: {{ start_status }}</p>
+    <h2>Конечный пункт: {{ end_city }}</h2>
+    <p>Погода на нем: {{ end_status }}</p>
+    <a href="/">Вернуться назад</a>
+
+    <!-- Данные погоды для Dash -->
+    <div id='weather-data' style="display: none;">{{ weather_data | tojson | safe }}</div>
+
+    <!-- Встраивание Dash через iframe -->
+    <iframe src="/dash/" style="width: 100%; height: 600px; border: none;"></iframe>
+</body>
+</html>
